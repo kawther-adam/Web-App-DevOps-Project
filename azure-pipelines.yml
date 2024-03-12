@@ -10,10 +10,11 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: Docker@2
+  displayName: 'Build and push image to Docker Hub'
+  inputs:
+    containerRegistry: 'Docker Hub'
+    repository: 'kawther23/devops-app'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
