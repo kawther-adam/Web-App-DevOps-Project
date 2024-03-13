@@ -17,5 +17,5 @@ steps:
     repository: kawther23/devops-app:v1.0  
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-    tags: 'v1:0'
+  
 
