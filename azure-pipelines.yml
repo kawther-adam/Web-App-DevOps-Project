@@ -12,7 +12,6 @@ pool:
 
 steps:
 - task: Docker@2
-  displayName: 'Build and push image to Docker Hub'
   inputs:
     containerRegistry: 'Docker Hub'
     repository: 'kawther23/devops-app'
