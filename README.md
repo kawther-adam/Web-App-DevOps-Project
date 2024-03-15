@@ -122,73 +122,73 @@ bash
 Copy code
 docker tag <name of the image> <docker-hub-username>/<image-name>:<tag>
 docker push <docker-hub-username>/<image-name>:<tag>
+# Networking Module (Terraform)
 
-### Networking Module (Terraform)
+## Initialization
 
-The repository includes Terraform configurations for provisioning networking services for an Azure Kubernetes Service (AKS) cluster.
+Initialized the networking module and navigated to the networking-module directory.
 
-Initialization
-To initialize the networking module, navigate to the networking-module directory and run:
+## Defined Input Variables:
 
-bash
-Copy code
-terraform init
-Variables
-Inside the cluster module directory, create a variables.tf configuration file. In this file, define the input variables for this module. These will allow you to customize various aspects of the AKS cluster.
+- **aks_cluster_name**: Represents the name of the AKS cluster you wish to create
+- **cluster_location**: Specifies the Azure region where the AKS cluster will be deployed to
+- **dns_prefix**: Defines the DNS prefix of the cluster
+- **kubernetes_version**: Specifies which Kubernetes version the cluster will use
+- **service_principal_client_id**: Provides the Client ID for the service principal associated with the cluster
+- **service_principal_secret**: Supplies the Client Secret for the service principal
 
-Define the following input variables:
+Additionally, added the output variables from the networking module as input variables for this module:
 
-aks_cluster_name: Represents the name of the AKS cluster you wish to create
-cluster_location: Specifies the Azure region where the AKS cluster will be deployed to
-dns_prefix: Defines the DNS prefix of the cluster
-kubernetes_version: Specifies which Kubernetes version the cluster will use
-service_principal_client_id: Provides the Client ID for the service principal associated with the cluster
-service_principal_secret: Supplies the Client Secret for the service principal
-Additionally, add the output variables from the networking module as input variables for this module:
+- **resource_group_name**
+- **vnet_id**
+- **control_plane_subnet_id**
+- **worker_node_subnet_id**
 
-resource_group_name
-vnet_id
-control_plane_subnet_id
-worker_node_subnet_id
+## Main Configuration
 
-
-Main Configuration
 Within the cluster module's main.tf configuration file, defined the necessary Azure resources for provisioning an AKS cluster. This includes creating the AKS cluster, specifying the node pool and the service principal. Used the input variables defined in the previous task to specify the necessary arguments.
 
-Outputs
+## Outputs
+
 Inside the cluster module created an outputs.tf configuration file, this defined the output variables of this module. These will capture essential information about the provisioned AKS cluster.
 
 Defined the following output variables:
 
-aks_cluster_name: Stores the name of the provisioned cluster
-aks_cluster_id: Stores the ID of the cluster
-aks_kubeconfig: Captures the Kubernetes configuration file of the cluster. This file is essential for interacting with and managing the AKS cluster using kubectl.
-Usage
-Initialize the cluster module to ensure it is ready to use within your main project. Make sure you are in the correct directory (aks-cluster-module) before running the initialization command.
+- **aks_cluster_name**: Stores the name of the provisioned cluster
+- **aks_cluster_id**: Stores the ID of the cluster
+- **aks_kubeconfig**: Captures the Kubernetes configuration file of the cluster. This file is essential for interacting with and managing the AKS cluster using kubectl.
 
-Terraform Main Configuration
+## Usage
+
+Initialized the cluster module to ensure it is ready to use within the main project.
+
+## Terraform Main Configuration
+
 Created a main.tf configuration file in the main project directory (aks-terraform). Within this file, first defined the Azure provider block to enable authentication to Azure using your service principal credentials. Remember to define input variables for the client_id and client_secret arguments in a variables.tf file, and then created equivalent environment variables to store the values without exposing your credentials.
 
-After provisioning the provider block, integrate the networking module in the project's main configuration file. This integration ensures that the networking resources previously defined in their respective module are included, and therefore accessible in the main project.
+After provisioning the provider block, integrated the networking module in the project's main configuration file. This integration ensures that the networking resources previously defined in their respective module are included, and therefore accessible in the main project.
 
 Provided the following input variables when calling the module:
 
-Set resource_group_name to  "networking-resource-group"
-Set location to an Azure region that is geographically close ("UK South")
-Set vnet_address_space to ["10.0.0.0/16"]
-Integrate the cluster module in the main project configuration file. This step connects the AKS cluster specifications to the main project, as well as allowing you to provision the cluster within the previously defined networking infrastructure.
+- **Set resource_group_name** to  "networking-resource-group"
+- **Set location** to an Azure region that is geographically close ("UK South")
+- **Set vnet_address_space** to ["10.0.0.0/16"]
+
+Integrated the cluster module in the main project configuration file. This step connects the AKS cluster specifications to the main project, as well as allowing you to provision the cluster within the previously defined networking infrastructure.
 
 Provided the following input variables when calling the module:
 
-Set cluster_name to "terraform-aks-cluster"
-Set location to an Azure region that is geographically close ("UK South")
-Set dns_prefix to "myaks-project"
-Set kubernetes_version to a Kubernetes version supported by AKS, such as "1.26.6"
-Set service_principal_client_id and service_principal_secret to your service principal credentials
-Use variables referencing the output variables from the networking module for the other input variables required by the cluster module such as: resource_group_name, vnet_id, control_plane_subnet_id, worker_node_subnet_id, and aks_nsg_id
-Within the main project directory initialize the Terraform project. Once the project is initialized, you can apply the Terraform configuration. This will initiate the creation of the defined infrastructure, including the networking resources and AKS cluster.
+- **Set cluster_name** to "terraform-aks-cluster"
+- **Set location** to an Azure region that is geographically close ("UK South")
+- **Set dns_prefix** to "myaks-project"
+- **Set kubernetes_version** to a Kubernetes version supported by AKS, such as "1.26.6"
+- **Set service_principal_client_id** and service_principal_secret to your service principal credentials
 
-Retrieved the kubeconfig file once the AKS cluster was rovisioned. This configuration file allowed you to connect to the AKS cluster securely. Connected to the newly created cluster to ensure that the provisioning process was successful and the cluster is operational.
+Used variables referencing the output variables from the networking module for the other input variables required by the cluster module such as: resource_group_name, vnet_id, control_plane_subnet_id, worker_node_subnet_id, and aks_nsg_id.
+
+Within the main project directory initialized the Terraform project. Once the project is initialized, applied the Terraform configuration. This will initiate the creation of the defined infrastructure, including the networking resources and AKS cluster.
+
+Retrieved the kubeconfig file once the AKS cluster was provisioned. This configuration file allowed you to connect to the AKS cluster securely. Connected to the newly created cluster to ensure that the provisioning process was successful and the cluster is operational.
 
 ## Kubernetes Deployment
 
@@ -229,7 +229,6 @@ Retrieved the kubeconfig file once the AKS cluster was rovisioned. This configur
 - **Deployment Strategy:** Shared the chosen deployment strategy and its alignment with application requirements.
 - **Testing and Validation:** Outlined the testing process and validations performed post-deployment.
 - **Distribution Plan:** Included plans for distributing the application to internal and external users securely.
-
 
 ### Setting Up CI/CD Pipeline
 
