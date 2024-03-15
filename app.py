@@ -2,29 +2,34 @@ from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
-import pyodbc
-import os
+from azure.identity import ManagedIdentityCredential
+from azure.keyvault.secrets import SecretClient
 
-# Initialise Flask App
+# Initialize Flask App
 app = Flask(__name__)
 
-# database connection 
-server = 'devops-project-server.database.windows.net'
-database = 'orders-db'
-username = 'maya'
-password = 'AiCore1237'
-driver= '{ODBC Driver 18 for SQL Server}'
+# Azure Key Vault URL
+key_vault_url = "https://keyvaultname23.vault.azure.net/"
+
+# Set up Azure Key Vault client with Managed Identity
+credential = ManagedIdentityCredential()
+secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
+
+# Retrieve database connection details from Azure Key Vault
+server = secret_client.get_secret("server-name").value
+database = secret_client.get_secret("database-name").value
+username = secret_client.get_secret("server-username").value
+password = secret_client.get_secret("server-password").value
 
 # Create the connection string
-connection_string=f'Driver={driver};\
-    Server=tcp:{server},1433;\
+connection_string = f"Driver={{ODBC Driver 18 for SQL Server}};\
+    Server={server},1433;\
     Database={database};\
     Uid={username};\
     Pwd={password};\
     Encrypt=yes;\
     TrustServerCertificate=no;\
-    Connection Timeout=30;'
+    Connection Timeout=30;"
 
 # Create the engine to connect to the database
 engine = create_engine("mssql+pyodbc:///?odbc_connect={}".format(connection_string))
@@ -47,11 +52,10 @@ class Order(Base):
     order_date = Column('Order Date', DateTime)
     shipping_date = Column('Shipping Date', DateTime)
 
-# define routes
-# route to display orders
+# Define routes
+# Route to display orders
 @app.route('/')
 def display_orders():
-
     page = int(request.args.get('page', 1))
     rows_per_page = 25
 
@@ -74,7 +78,7 @@ def display_orders():
 
     return render_template('orders.html', orders=current_page_orders, page=page, total_pages=total_pages)
 
-# route to add orders
+# Route to add orders
 @app.route('/add_order', methods=['POST'])
 def add_order():
     date_uuid = request.form.get('date_uuid')
@@ -107,6 +111,7 @@ def add_order():
 
     return redirect(url_for('display_orders'))
 
-# run the app
+# Run the app
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+

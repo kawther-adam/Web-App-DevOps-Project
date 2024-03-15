@@ -14,9 +14,9 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'Docker Hub'
-    repository: kawther23/devops-app 
+    repository: kawther23/devops-appv1.0 
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-    tags: 'v1.0'
+    tags: 'latest'
   
 
