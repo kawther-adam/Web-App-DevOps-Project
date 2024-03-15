@@ -319,14 +319,6 @@ Set up alert rules to trigger alarms for critical conditions:
 - **Used Disk Percentage Alert**
 - **CPU and Memory Usage Alerts**
 
-## Updating README
-
-Update the README file in the project repository with detailed information about the monitoring and security setup for the AKS cluster. Include:
-
-- Explanation of Metrics Explorer charts and Log Analytics logs.
-- Configuration details of the alert rules.
-- Procedures and strategies for responding to alarms, including scaling resources and troubleshooting.
-- Screenshots and sample logs entries for clarity.
 
 ## Securing Application Code with Azure Key Vault
 
@@ -348,3 +340,11 @@ Update the README file in the project repository with detailed information about
 ## Conclusion
 In summary, the journey from Git versioning to monitoring and logging in an AKS environment underscores the importance of seamless collaboration, automation, visibility, and security in modern DevOps practices. By leveraging Azure DevOps for CI/CD pipelines, Docker Hub for container management, and Azure Monitor for real-time insights, organizations can achieve efficient development, deployment, monitoring, and maintenance of cloud-native applications on AKS clusters. This integrated approach fosters agility, reliability, and security, enabling teams to deliver high-quality software with confidence and efficiency.
 
+## Contributors 
+
+- [Maya Iuga]([https://github.com/yourusername](https://github.com/maya-a-iuga))
+- [Kawther Adam]([https://github.com/yourusername](https://github.com/kawther-adam))
+
+## License
+
+This project is licensed under the MIT License. For more details, refer to the [LICENSE](LICENSE) file.
