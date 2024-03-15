@@ -81,47 +81,51 @@ To run the application, you simply need to run the `app.py` script in this repos
 
 Used Git for version control. The repository is structured to support collaboration and feature development using branches and pull requests.
 
-Cloning the Repository
-To clone the repository onto your local machine, use the following command:
+## Cloning the Repository
 
-bash
-Copy code
+To clone the repository onto your local machine, used the following command:
+
+
 git clone https://github.com/<your-username>/Web-App-DevOps-Project.git
-Creating Issues
-Issues are used to track and manage tasks and features. To create a new issue, navigate to the Issues tab and click New Issue. Provide a descriptive title and details about the task or feature.
 
-Branching and Pull Requests
-Branches are used to isolate work and avoid conflicts. To create a new feature branch, use the following command:
+## Creating Issues
 
-bash
-Copy code
+ Used to track and manage tasks and features. To create a new issue, navigated to the Issues tab and clicked on New Issue. Provided a descriptive title and details about the task or feature.
+
+## Branching and Pull Requests
+
+Branches are used to isolate work and avoid conflicts. To create a new feature branch, used the following command:
+
+
 git checkout -b feature/add-delivery-date
-Make necessary code changes and push them to the remote repository. Submit a pull request to merge the changes into the main branch.
 
-Docker
+Made necessary code changes and pushed the code to the remote repository. Submitted  a pull request to merge the changes into the main branch.
+
+## Docker
 The application is containerized using Docker for consistent packaging and deployment.
 
-Dockerfile
+## Dockerfile
+
 The Dockerfile encapsulates all dependencies and configuration settings. To build the Docker image, run the following command:
 
-bash
-Copy code
+
 docker build -t <name of the image> .
-Running Docker Container
+
+## Running Docker Container
+
 To run the Docker container locally and access the application, use the following command:
 
-bash
-Copy code
-docker run -p 5000:5000 <name of the image>
-Access the application at http://127.0.0.1:5000.
 
-Docker Image Tagging and Pushing
+1. docker run -p 5000:5000 <name of the image>
+2. Access the application at http://127.0.0.1:5000.
+
+## Docker Image Tagging and Pushing
+
 Tag the Docker image with relevant information and push it to Docker Hub for accessibility and deployment:
 
-bash
-Copy code
-docker tag <name of the image> <docker-hub-username>/<image-name>:<tag>
-docker push <docker-hub-username>/<image-name>:<tag>
+1. docker tag <name of the image> <docker-hub-username>/<image-name>:<tag>
+2. docker push <docker-hub-username>/<image-name>:<tag>
+
 # Networking Module (Terraform)
 
 ## Initialization
