@@ -6,26 +6,27 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 
 - [Features](#features)
 - [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Usage](#usage)
 - [Technology Stack](#technology-stack)
+- [Contributors](#contributors)
+- [License](#license)
 - [Infrastructure Setup](#infrastructure-setup)
-   - [Devops Pipeline Architecture](#devops-pipeline-architecture)
+- [DevOps Pipeline Architecture](#devops-pipeline-architecture)
   - [Versioning and Docker Setup](#versioning-and-docker-setup)
-  - [Networking Module (Terraform)](#networking-module-terraform)
+  - [Networking Module](#networking-module)
+  - [Cluster Module](#cluster-module)
   - [Provisioning AKS Cluster with Terraform](#provisioning-aks-cluster-with-terraform)
 - [Deployment to AKS](#deployment-to-aks)
   - [Kubernetes Manifests](#kubernetes-manifests)
-  - [Setting Up CI/CD Pipeline](#setting-up-cicd-pipeline)
-- [Monitoring and Security Setup for AKS Cluster](#monitoring-and-security-setup-for-aks-cluster)
-  - [Enable Container Insights](#enable-container-insights)
-  - [Metrics Explorer Configuration](#metrics-explorer-configuration)
-  - [Log Analytics Configuration](#log-analytics-configuration)
-  - [Alerting Configuration](#alerting-configuration)
-- [Securing Application Code with Azure Key Vault](#securing-application-code-with-azure-key-vault)
+  - [Setting Up CI/CD Pipeline](#setting-up-ci/cd-pipeline)
+- [Monitoring AKS Cluster](#monitoring-aks-cluster)
+  - [Enabling Container Insights](#enabling-container-insights)
+  - [Metrics and Logs Configuration](#metrics-and-logs-configuration)
+  - [Setting Up Alerts](#setting-up-alerts)
+- [Securing Application with Azure Key Vault](#securing-application-with-azure-key-vault)
+  - [Key Vault Setup](#key-vault-setup)
+  - [Managed Identity](#managed-identity)
+  - [Application Integration](#application-integration)
 - [Conclusion](#conclusion)
-- [Contributors](#contributors)
-- [License](#license)
 
 ## Features
 
@@ -72,37 +73,32 @@ To run the application, you simply need to run the `app.py` script in this repos
 
 ## Infrastructure Setup
 
-## DevOps Pipeline Architecture
+## DevOps Pipeline architecture
 
-(![alt text](image.png))
-
+![alt text](image-1.png)
 
 ### Versioning and Docker Setup
 
-This section outlines the version control and Docker setup for the Web App DevOps Project.
+Used Git for version control. The repository is structured to support collaboration and feature development using branches and pull requests.
 
-## Version Control with Git
-
-Git is used for version control to manage collaboration and feature development effectively. The repository is structured to support branching and pull requests.
-
-### Cloning the Repository
-
+Cloning the Repository
 To clone the repository onto your local machine, use the following command:
 
-```bash
+bash
+Copy code
 git clone https://github.com/<your-username>/Web-App-DevOps-Project.git
 Creating Issues
-Issues are utilized to track and manage tasks and features. To create a new issue, navigate to the Issues tab and click New Issue. Provide a descriptive title and details about the task or feature.
+Issues are used to track and manage tasks and features. To create a new issue, navigate to the Issues tab and click New Issue. Provide a descriptive title and details about the task or feature.
 
 Branching and Pull Requests
-Branches are created to isolate work and avoid conflicts. To create a new feature branch, use the following command:
+Branches are used to isolate work and avoid conflicts. To create a new feature branch, use the following command:
 
 bash
 Copy code
 git checkout -b feature/add-delivery-date
 Make necessary code changes and push them to the remote repository. Submit a pull request to merge the changes into the main branch.
 
-Docker Containerization
+Docker
 The application is containerized using Docker for consistent packaging and deployment.
 
 Dockerfile
@@ -110,13 +106,13 @@ The Dockerfile encapsulates all dependencies and configuration settings. To buil
 
 bash
 Copy code
-docker build -t <image-name> .
+docker build -t <name of the image> .
 Running Docker Container
 To run the Docker container locally and access the application, use the following command:
 
 bash
 Copy code
-docker run -p 5000:5000 <image-name>
+docker run -p 5000:5000 <name of the image>
 Access the application at http://127.0.0.1:5000.
 
 Docker Image Tagging and Pushing
@@ -124,7 +120,7 @@ Tag the Docker image with relevant information and push it to Docker Hub for acc
 
 bash
 Copy code
-docker tag <image-name> <docker-hub-username>/<image-name>:<tag>
+docker tag <name of the image> <docker-hub-username>/<image-name>:<tag>
 docker push <docker-hub-username>/<image-name>:<tag>
 
 ### Networking Module (Terraform)
@@ -226,7 +222,13 @@ Retrieved the kubeconfig file once the AKS cluster was rovisioned. This configur
 3. **Local Access:** Accessed the application locally at `http://127.0.0.1:5000`.
 4. **Functional Testing:** Thoroughly tested the application, particularly the orders table and Add Order functionality.
 
+## Updating README
 
+- **Deployment Details:** Updated the README file in the project repository with comprehensive information about the Kubernetes deployment.
+- **Manifests Explanation:** Provided a detailed description of the Deployment and Service manifests, explaining key concepts and configurations.
+- **Deployment Strategy:** Shared the chosen deployment strategy and its alignment with application requirements.
+- **Testing and Validation:** Outlined the testing process and validations performed post-deployment.
+- **Distribution Plan:** Included plans for distributing the application to internal and external users securely.
 
 
 ### Setting Up CI/CD Pipeline
@@ -314,6 +316,14 @@ Set up alert rules to trigger alarms for critical conditions:
 - **Used Disk Percentage Alert**
 - **CPU and Memory Usage Alerts**
 
+## Updating README
+
+Update the README file in the project repository with detailed information about the monitoring and security setup for the AKS cluster. Include:
+
+- Explanation of Metrics Explorer charts and Log Analytics logs.
+- Configuration details of the alert rules.
+- Procedures and strategies for responding to alarms, including scaling resources and troubleshooting.
+- Screenshots and sample logs entries for clarity.
 
 ## Securing Application Code with Azure Key Vault
 
@@ -334,14 +344,4 @@ Set up alert rules to trigger alarms for critical conditions:
 
 ## Conclusion
 In summary, the journey from Git versioning to monitoring and logging in an AKS environment underscores the importance of seamless collaboration, automation, visibility, and security in modern DevOps practices. By leveraging Azure DevOps for CI/CD pipelines, Docker Hub for container management, and Azure Monitor for real-time insights, organizations can achieve efficient development, deployment, monitoring, and maintenance of cloud-native applications on AKS clusters. This integrated approach fosters agility, reliability, and security, enabling teams to deliver high-quality software with confidence and efficiency.
-
-
-
-## Contributors 
-
-- [Maya Iuga](https://github.com/maya-a-iuga)
-
-## License
-
-This project is licensed under the MIT License. For more details, refer to the [LICENSE](LICENSE) file.
 
