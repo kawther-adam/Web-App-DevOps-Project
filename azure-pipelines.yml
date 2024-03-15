@@ -15,8 +15,6 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
     tags: 'latest'
-<<<<<<< HEAD
-=======
 
 # Starter pipeline
 - task: KubernetesManifest@1
@@ -30,6 +28,5 @@ steps:
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
->>>>>>> 7e6e5a1168a6b4b9c0528f7946f901067589086e
   
 
