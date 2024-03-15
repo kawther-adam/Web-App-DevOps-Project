@@ -83,7 +83,7 @@ Used Git for version control. The repository is structured to support collaborat
 
 ## Cloning the Repository
 
-To clone the repository onto your local machine, used the following command:
+To clone the repository onto your local machine, use the following command:
 
 
 git clone https://github.com/<your-username>/Web-App-DevOps-Project.git
@@ -94,8 +94,7 @@ git clone https://github.com/<your-username>/Web-App-DevOps-Project.git
 
 ## Branching and Pull Requests
 
-Branches are used to isolate work and avoid conflicts. To create a new feature branch, used the following command:
-
+Branches are used to isolate work and avoid conflicts. To create a new feature branch, use the following command:
 
 git checkout -b feature/add-delivery-date
 
@@ -157,7 +156,6 @@ Within the cluster module's main.tf configuration file, defined the necessary Az
 Inside the cluster module created an outputs.tf configuration file, this defined the output variables of this module. These will capture essential information about the provisioned AKS cluster.
 
 Defined the following output variables:
-
 - **aks_cluster_name**: Stores the name of the provisioned cluster
 - **aks_cluster_id**: Stores the ID of the cluster
 - **aks_kubeconfig**: Captures the Kubernetes configuration file of the cluster. This file is essential for interacting with and managing the AKS cluster using kubectl.
@@ -225,14 +223,6 @@ Retrieved the kubeconfig file once the AKS cluster was provisioned. This configu
 2. **Port Forwarding:** Initiated port forwarding using `kubectl port-forward <pod-name> 5000:5000`.
 3. **Local Access:** Accessed the application locally at `http://127.0.0.1:5000`.
 4. **Functional Testing:** Thoroughly tested the application, particularly the orders table and Add Order functionality.
-
-## Updating README
-
-- **Deployment Details:** Updated the README file in the project repository with comprehensive information about the Kubernetes deployment.
-- **Manifests Explanation:** Provided a detailed description of the Deployment and Service manifests, explaining key concepts and configurations.
-- **Deployment Strategy:** Shared the chosen deployment strategy and its alignment with application requirements.
-- **Testing and Validation:** Outlined the testing process and validations performed post-deployment.
-- **Distribution Plan:** Included plans for distributing the application to internal and external users securely.
 
 ### Setting Up CI/CD Pipeline
 
