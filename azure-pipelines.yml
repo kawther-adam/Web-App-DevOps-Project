@@ -1,17 +1,14 @@
-
-
 trigger:
 - main
 
 pool:
   vmImage: ubuntu-latest
  
-
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'Docker Hub'
-    repository: kawther23/devops-appv1.0 
+    containerRegistry: 'Docker Hub'  # Corrected syntax
+    repository: 'kawther23/devops-appv1.0'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
     tags: 'latest'
@@ -25,8 +22,6 @@ steps:
     azureResourceGroup: 'networking-resource-group'
     kubernetesCluster: 'terraform-aks-cluster'
     manifests: 'application-manifest.yaml'
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+
   
 
