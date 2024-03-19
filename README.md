@@ -6,28 +6,25 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 
 - [Features](#features)
 - [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Usage](#usage)
 - [Technology Stack](#technology-stack)
-- [Contributors](#contributors)
-- [License](#license)
 - [Infrastructure Setup](#infrastructure-setup)
 - [DevOps Pipeline Architecture](#devops-pipeline-architecture)
   - [Versioning and Docker Setup](#versioning-and-docker-setup)
   - [Networking Module](#networking-module)
   - [Cluster Module](#cluster-module)
-  - [Provisioning AKS Cluster with Terraform](#provisioning-aks-cluster-with-terraform)
-- [Deployment to AKS](#deployment-to-aks)
-  - [Kubernetes Manifests](#kubernetes-manifests)
-  - [Setting Up CI/CD Pipeline](#setting-up-ci/cd-pipeline)
+  - [Deployment to AKS](#deployment-to-aks)
+  - [Setting Up CI/CD Pipeline](#setting-up-cicd-pipeline)
 - [Monitoring AKS Cluster](#monitoring-aks-cluster)
   - [Enabling Container Insights](#enabling-container-insights)
-  - [Metrics and Logs Configuration](#metrics-and-logs-configuration)
-  - [Setting Up Alerts](#setting-up-alerts)
+  - [Metrics Explorer Configuration](#metrics-explorer-configuration)
+  - [Log Analytics Configuration](#log-analytics-configuration)
+  - [Alerting Configuration](#alerting-configuration)
 - [Securing Application with Azure Key Vault](#securing-application-with-azure-key-vault)
-  - [Key Vault Setup](#key-vault-setup)
-  - [Managed Identity](#managed-identity)
-  - [Application Integration](#application-integration)
 - [Conclusion](#conclusion)
-
+- [Contributors](#contributors)
+- [License](#license)
 ## Features
 
 - **Order List:** View a comprehensive list of orders including details like date UUID, user ID, card number, store code, product code, product quantity, order date, and shipping date.
@@ -270,7 +267,7 @@ This documentation outlines the steps to set up a CI/CD pipeline for deploying a
 
 # Monitoring and Security Setup for AKS Cluster
 
-This README provides instructions on setting up monitoring, logging, alerting, and security measures for an AKS (Azure Kubernetes Service) cluster.
+This part provides instructions on setting up monitoring, logging, alerting, and security measures for an AKS (Azure Kubernetes Service) cluster.
 
 ## Enable Container Insights
 
